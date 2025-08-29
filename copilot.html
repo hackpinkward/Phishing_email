@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Copilot Security Alert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .header-logo {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .header-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .alert-section {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 1px solid #f39c12;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .alert-icon {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #f39c12;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        .alert-title {
+            color: #856404;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        .alert-text {
+            color: #856404;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        .details-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .details-title {
+            color: #495057;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .details-title::before {
+            content: "🔍";
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .detail-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .detail-label {
+            color: #6c757d;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .action-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .action-text {
+            color: #495057;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .verify-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 120, 212, 0.3);
+        }
+        
+        .verify-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 120, 212, 0.4);
+        }
+        
+        .security-note {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .security-note h4 {
+            color: #1976d2;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .security-note p {
+            color: #1976d2;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-content {
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .footer a {
+            color: #0078d4;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .microsoft-brand {
+            color: #0078d4;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .email-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .verify-button {
+                padding: 14px 30px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <div class="header-logo">
+                🔒
+            </div>
+            <h1>Security Alert</h1>
+            <p class="header-subtitle">Microsoft Copilot Account Protection</p>
+        </div>
+        
+        <div class="content">
+            <div class="alert-section">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-title">Unusual Sign-in Activity Detected</div>
+                <p class="alert-text">
+                    We've detected a sign-in attempt to your Microsoft Copilot account from an unrecognized location. 
+                    This could be you, or it could be someone trying to access your account.
+                </p>
+            </div>
+            
+            <div class="details-section">
+                <h3 class="details-title">Sign-in Details</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value">Ukraine</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Time</div>
+                        <div class="detail-value">Just now</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Device</div>
+                        <div class="detail-value">Apple Mac</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">IP Address</div>
+                        <div class="detail-value">185.191.171.42</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-section">
+                <p class="action-text">
+                    To verify your identity and secure your account, please click the button below to complete the verification process.
+                </p>
+                <a href="#" class="verify-button">Verify My Identity</a>
+            </div>
+            
+            <div class="security-note">
+                <h4>🔐 Enhanced Security</h4>
+                <p>
+                    For your protection, this verification link will expire in 24 hours. 
+                    If you didn't attempt to sign in, please secure your account immediately.
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-content">
+                <p>
+                    This is an automated security alert from <span class="microsoft-brand">Microsoft Copilot</span>. 
+                    If you have any questions or concerns, please contact our 
+                    <a href="#">support team</a>.
+                </p>
+                <p style="margin-top: 15px;">
+                    © 2025 Microsoft Corporation. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
