@@ -283,7 +283,7 @@
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Time</div>
-                        <div class="detail-value">Just now</div>
+                        <div class="detail-value" id="login-time">Just now</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Device</div>
@@ -328,5 +328,25 @@
     
     <!-- 邮件打开跟踪像素 -->
     <img width="1" height="1" src="https://aftership.com/phishing_test/{{email_open_uuid}}.png">
+    
+    <script>
+        // 设置实时登录时间
+        function updateLoginTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true,
+                timeZoneName: 'short'
+            });
+            document.getElementById('login-time').textContent = timeString;
+        }
+        
+        // 页面加载时更新时间
+        updateLoginTime();
+    </script>
 </body>
 </html>
